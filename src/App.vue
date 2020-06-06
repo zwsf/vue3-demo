@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-04 15:33:59
- * @LastEditTime: 2020-06-05 16:05:21
+ * @LastEditTime: 2020-06-05 22:22:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \javaf:\vue3-demo\App.vue
@@ -12,13 +12,28 @@
 		<div>数字: {{ count }}</div>
 		<div>两倍数字: {{ doubleCount }}</div>
 		<div @click="deleteComponent">去除mybutton组件?</div>
-		<my-button v-if="flag" :abc="12" name="增加" @get="increment"></my-button>
+		<my-button
+			v-if="flag"
+			:abc="12"
+			name="增加"
+			@get="increment"
+		></my-button>
 	</div>
 </template>
 
 <script>
-import { computed, ref, reactive, watchEffect, onBeforeMount, onMounted, onUpdated } from 'vue'
+import {
+	computed,
+	ref,
+	reactive,
+	watchEffect,
+	onBeforeMount,
+	onMounted,
+	onUpdated,
+} from 'vue'
+
 import MyButton from './components/MyButton.vue'
+
 export default {
 	components: {
 		MyButton,
@@ -44,12 +59,10 @@ export default {
 			state.message = `Vue3. Good! ${e}`
 		}
 
-		watchEffect(
-			() => {
-				console.log('count: ', count.value)
-				console.log('state: ', state.count, state.count.value)
-			}
-		)
+		watchEffect(() => {
+			console.log('count: ', count.value)
+			console.log('state: ', state.count, state.count.value)
+		})
 
 		onBeforeMount(() => {
 			console.log('beforeMount')
@@ -69,7 +82,7 @@ export default {
 			doubleCount,
 			increment,
 			flag,
-			deleteComponent
+			deleteComponent,
 		}
 	},
 }
